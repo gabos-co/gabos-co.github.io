@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gabos.co — József Gábos, brand and interface design</title>
+<meta name="description" content="József Gábos, graphic and UI designer based in Budapest. Visual identity, packaging, print and digital design. Ratio Műhely, GHT-SYS, Alpok Water, Swiss Re, SevenFriday.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gabos.co/">
+<meta property="og:title" content="gabos.co — József Gábos">
+<meta property="og:description" content="Visual identity, packaging, print and digital design. Budapest.">
+<meta property="og:image" content="https://gabos.co/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Geist · Vercel + basement.studio · SIL Open Font License 1.1 (fonts/OFL.txt) */
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* gabos.co
+ * TILTVA: monospace betu, es az apro tagon szedett verzal mikro-feliratok.
+ * A hierarchia meretbol, sulybol, poziciobol es levegobol jon.
+ * Szerkezet: nyitas · mit csinalok · kiemelt munkak · tovabbi munkak · palya · zaras.
+ */
+
+:root {
+  --bg:      #FFFFFF;
+  --bg-2:    #F3F2EE;
+  --bg-3:    #EAE9E3;
+  --fg:      #0E0E0C;
+  --fg-2:    #6C6B64;
+  --rule:    #E3E2DB;
+  --accent:  #E03127;   /* a Ratio Muhely pirosa: sajat szin, nem kolcsonzott */
+
+  /* a munkak sajat szinei: valos ertekek a portfoliobol */
+  --ratio-red:   #E03127;
+  --ghtsys-blue: #00FFFF;
+  --alpok-blue:  #63BFED;
+
+  --wrap: 1560px;
+  --f: "Geist", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+
+  --t-small: clamp(0.88rem, 0.85rem + 0.15vw, 0.98rem);
+  --t-body:  clamp(1rem, 0.94rem + 0.28vw, 1.15rem);
+  --t-lead:  clamp(1.3rem, 1.05rem + 1.1vw, 2rem);
+  --t-sub:   clamp(1.9rem, 1.25rem + 2.8vw, 3.4rem);
+  --t-big:   clamp(2.4rem, 1rem + 5.4vw, 5.6rem);
+  --t-mega:  clamp(2.6rem, 0.4rem + 7.4vw, 8rem);
+
+  --gap-xs: 0.5rem; --gap-s: 1rem; --gap-m: 2rem;
+  --gap-l:  clamp(3.5rem, 8vw, 6.5rem);
+  --gap-xl: clamp(5.5rem, 13vw, 11rem);
+
+  --edge: clamp(1rem, 3.2vw, 3rem);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 240ms;
+}
+
+* { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.pad {
+  padding-inline: var(--edge);
+  max-width: calc(var(--wrap) + 2 * var(--edge));
+  margin-inline: auto;
+}
+.muted { color: var(--fg-2); }
+h1, h2, h3 { font-weight: 500; letter-spacing: -0.035em; text-wrap: balance; margin: 0; }
+
+.skip { position: absolute; left: -9999px; background: var(--fg); color: var(--bg); padding: 0.7rem 1rem; z-index: 20; }
+.skip:focus { left: var(--edge); top: var(--edge); }
+
+
+
+
+
+/* karaktermező: a márkajel betűkből áll össze, majd tovább hullámzik */
+.fieldc { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; display: block; }
+.stage-top, .stage-mid { z-index: 3; }
+.crossing { z-index: 2; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* ---------- nyitó szín: óriás névsor alul, rajta átvágó kép -----------
+ * A gondolat: a név a keret aljában fut végig, egy tárgy keresztezi,
+ * és vékony rácsvonalak tartják a lapot. A tárgy nem díszlet: a saját
+ * munkád egy darabja.
+ */
+.stage {
+  position: relative;
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  padding-bottom: clamp(1rem, 2.5vw, 2rem);
+  overflow: clip;
+}
+.stage > .pad { width: 100%; }
+.lines { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(4, 1fr); pointer-events: none; }
+.lines i { border-right: 1px solid var(--rule); }
+.lines i:last-child { border-right: 0; }
+
+.stage-top {
+  display: flex; justify-content: flex-end; align-items: baseline;
+  gap: var(--gap-m); padding-top: clamp(1rem, 2.2vw, 1.6rem);
+  position: relative; z-index: 3;
+}
+.nav { display: flex; gap: clamp(1rem, 2.4vw, 2.5rem); }
+.nav a { color: var(--fg); text-decoration: none; font-size: var(--t-small); }
+.nav a:hover, .nav a:focus-visible { color: var(--accent); }
+
+.stage-mid { margin-top: clamp(2rem, 7vw, 5rem); position: relative; z-index: 3; }
+.stage-line { margin: 0; max-width: 34ch; font-size: var(--t-lead); line-height: 1.15; letter-spacing: -0.025em; }
+
+.crossing {
+  position: absolute; margin: 0;
+  right: clamp(1rem, 4vw, 5rem);
+  bottom: clamp(5rem, 12vw, 10rem);
+  width: clamp(12rem, 26vw, 26rem);
+  z-index: 2;
+  will-change: transform;
+}
+.crossing { aspect-ratio: 1 / 1; }
+.crossing canvas { display: block; width: 100% !important; height: 100% !important; }
+.crossing:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+
+.stage-name { margin-top: auto; position: relative; z-index: 1; }
+.giant {
+  font-size: clamp(2.6rem, 19.4vw, 22rem);
+  line-height: 0.78;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+  margin: 0;
+}
+@media (max-width: 760px) {
+  .giant { white-space: normal; letter-spacing: -0.04em; }
+  .crossing { width: 52vw; bottom: 28vh; }
+  .lines { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- tömör fejléc, felvezetés nélkül ---------- */
+.masthead { padding-block: clamp(1rem, 2.2vw, 1.6rem) clamp(1rem, 2.2vw, 1.6rem); }
+.mast-row {
+  display: grid; grid-template-columns: 22fr 56fr 22fr;
+  gap: var(--gap-xs) var(--gap-m);
+  align-items: baseline;
+  padding-bottom: clamp(0.8rem, 1.6vw, 1.2rem);
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--t-small);
+}
+.mast-row p { margin: 0; }
+.mast-row p:last-child { text-align: right; }
+.mast-row a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--rule); }
+.mast-row a:hover, .mast-row a:focus-visible { color: var(--accent); border-color: var(--accent); }
+@media (max-width: 800px) {
+  .mast-row { grid-template-columns: 1fr; }
+  .mast-row p:last-child { text-align: left; }
+}
+
+.opening-work { padding-block: clamp(1.2rem, 3vw, 2.4rem) var(--gap-xl); }
+.shot.open { grid-column: 1 / -1; aspect-ratio: 21 / 9; }
+.open-head { padding-top: var(--gap-m); padding-bottom: 0 !important; }
+
+/* ---------- mit csinálok: eltérő méretű kártyák ---------- */
+.services { padding-block: var(--gap-xl); }
+.sec-head {
+  display: grid; grid-template-columns: 40fr 60fr; gap: var(--gap-xs) var(--gap-m);
+  align-items: end; padding-bottom: var(--gap-l);
+}
+.sec-head h2 { font-size: var(--t-sub); line-height: 1; }
+.sec-head p { margin: 0; max-width: 46ch; }
+
+.cards { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(0.6rem, 1.2vw, 1rem); }
+.card {
+  background: var(--bg-2);
+  padding: clamp(1.4rem, 2.6vw, 2.4rem);
+  display: flex; flex-direction: column; justify-content: space-between;
+  gap: var(--gap-l);
+  min-height: clamp(12rem, 22vw, 19rem);
+  transition: background var(--dur) var(--ease);
+}
+.card { position: relative; overflow: clip; }
+.card::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 1px;
+  background: var(--accent);
+  opacity: 0; transition: opacity 420ms var(--ease);
+}
+.card:hover { background: var(--bg-3); }
+.card:hover::before { opacity: 0.9; }
+.card h3 { font-size: var(--t-lead); line-height: 1.05; }
+.card p { margin: 0; font-size: var(--t-small); color: var(--fg-2); max-width: 34ch; }
+.card .no { font-size: var(--t-small); color: var(--fg-2); }
+/* szándékosan egyenetlen: 3-3, majd 2-4 */
+.card:nth-child(1) { grid-column: span 3; }
+.card:nth-child(2) { grid-column: span 3; }
+.card:nth-child(3) { grid-column: span 2; }
+.card:nth-child(4) { grid-column: span 4; }
+@media (max-width: 900px) { .card { grid-column: 1 / -1 !important; min-height: 0; } }
+
+/* ---------- kiemelt munkák ---------- */
+.work { padding-block: var(--gap-l) var(--gap-xl); }
+.project { margin-bottom: var(--gap-xl); }
+.project .head {
+  display: grid; grid-template-columns: 40fr 60fr; gap: var(--gap-xs) var(--gap-m);
+  align-items: baseline; padding-bottom: var(--gap-m);
+}
+.project h3 { font-size: var(--t-big); line-height: 0.98; }
+.project .kind { margin: 0; font-size: var(--t-small); }
+.project .desc { margin: var(--gap-s) 0 0; max-width: 54ch; color: var(--fg-2); }
+
+.shots { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(0.6rem, 1.4vw, 1.2rem); }
+.shot { overflow: clip; background: var(--bg-2); }
+.shot img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); will-change: transform; }
+.shot.a { grid-column: span 8; aspect-ratio: 16 / 11; }
+.shot.b { grid-column: span 4; aspect-ratio: 4 / 5; }
+.shot.wide { grid-column: span 12; aspect-ratio: 21 / 9; }
+.shot.half { grid-column: span 6; aspect-ratio: 4 / 3; }
+@media (max-width: 800px) { .shot { grid-column: 1 / -1 !important; aspect-ratio: 4 / 3; } }
+
+/* ---------- további munkák ---------- */
+.more { padding-block: var(--gap-l) var(--gap-xl); }
+.row {
+  display: grid; grid-template-columns: 40fr 45fr 15fr; gap: var(--gap-xs) var(--gap-m);
+  align-items: baseline; padding: clamp(1rem, 2.2vw, 1.7rem) 0;
+  border-top: 1px solid var(--rule);
+}
+.row:last-child { border-bottom: 1px solid var(--rule); }
+.row .t { font-size: var(--t-lead); letter-spacing: -0.028em; }
+.row .d, .row .y { font-size: var(--t-small); color: var(--fg-2); margin: 0; }
+.row .y { text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 800px) { .row { grid-template-columns: 1fr; } .row .y { text-align: left; } }
+
+/* ---------- pálya ---------- */
+.about { padding-block: var(--gap-xl); display: grid; grid-template-columns: 40fr 60fr; gap: var(--gap-m); align-items: start; }
+.about .body p { margin: 0 0 var(--gap-s); max-width: 58ch; }
+.cv { list-style: none; margin: var(--gap-l) 0 0; padding: 0; }
+.cv li { display: grid; grid-template-columns: 8rem 1fr; gap: var(--gap-s); padding: 0.7rem 0; border-top: 1px solid var(--rule); font-size: var(--t-small); }
+.cv .year { color: var(--fg-2); font-variant-numeric: tabular-nums; }
+
+/* ---------- zárás ---------- */
+.closing { padding-block: var(--gap-l) var(--gap-m); }
+.closing .say { margin: 0 0 var(--gap-s); font-size: var(--t-small); }
+.mail {
+  display: block; color: inherit; text-decoration: none;
+  font-size: clamp(1.9rem, 0.4rem + 7vw, 7rem);
+  font-weight: 500; line-height: 0.9; letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
+  transition: color var(--dur) var(--ease);
+}
+.mail:hover, .mail:focus-visible { color: var(--accent); }
+.mail:active { transform: translateY(2px); }
+.foot { display: grid; grid-template-columns: 40fr 60fr; gap: var(--gap-xs) var(--gap-m); margin-top: var(--gap-l); padding-top: var(--gap-s); border-top: 1px solid var(--rule); font-size: var(--t-small); }
+.foot p { margin: 0; }
+
+@media (max-width: 800px) {
+  .hero .intro, .hero .under, .sec-head, .project .head, .about, .foot { grid-template-columns: 1fr; }
+  .cv li { grid-template-columns: 6.5rem 1fr; }
+}
+
+/* ---------- mozgás ----------
+ * Maszkos érkezés: a szöveg alulról jön fel a saját kivágása mögül,
+ * a képek függönyszerűen nyílnak. Csak transform, opacity és clip-path.
+ * Minden elem egyszer játszik le. Csökkentett mozgásnál minden azonnal ott van.
+ */
+
+/* soronkénti maszk: a sor a saját kerete mögül lép elő */
+.mask { display: block; overflow: clip; padding-bottom: 0.06em; }
+.mask > i {
+  display: block;
+  font-style: inherit;
+  transform: translate3d(0, 110%, 0);
+  transition: transform 900ms var(--ease);
+  transition-delay: calc(var(--i, 0) * 80ms + var(--d, 0ms));
+}
+.seen .mask > i, .mask.seen > i { transform: none; }
+
+/* szavankénti érkezés a nagy címeken */
+.w { display: inline-block; overflow: clip; vertical-align: top; }
+.w > i {
+  display: inline-block;
+  font-style: inherit;
+  transform: translate3d(0, 105%, 0);
+  transition: transform 800ms var(--ease);
+  transition-delay: calc(var(--w, 0) * 55ms);
+}
+.seen .w > i { transform: none; }
+
+/* általános érkezés */
+[data-reveal] { opacity: 0; transform: translate3d(0, 26px, 0); transition: opacity 800ms var(--ease), transform 800ms var(--ease); transition-delay: calc(var(--i, 0) * 90ms + var(--d, 0ms)); }
+[data-reveal].seen { opacity: 1; transform: none; }
+/* ahol maszk vagy szó-animáció van, ott a szülő ne halványodjon külön */
+[data-reveal].has-mask { opacity: 1; transform: none; }
+
+/* a kép függönyként nyílik, és közben a helyére ül */
+.shot { clip-path: inset(0 0 100% 0); transition: clip-path 1000ms var(--ease); transition-delay: calc(var(--i, 0) * 110ms); }
+.seen .shot, .shot.seen { clip-path: inset(0 0 0 0); }
+.shot img { transform: scale(1.18); transition: transform 1400ms var(--ease); }
+.seen .shot img, .shot.seen img { transform: scale(1.05); }
+
+/* kártya: a szám elcsúszik, a lap megemelkedik */
+.card { transition: background var(--dur) var(--ease), transform 420ms var(--ease); }
+.card:hover { transform: translateY(-6px); }
+.card .no { transition: transform 420ms var(--ease), color var(--dur) var(--ease); }
+.card:hover .no { transform: translateX(6px); color: var(--accent); }
+
+/* sor: a cím jobbra lép, vékony vonal húzódik alá */
+.row { position: relative; }
+.row::after {
+  content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 0;
+  background: var(--accent); transition: width 520ms var(--ease);
+}
+.row:hover::after { width: 100%; }
+.row .t { display: inline-block; transition: transform 420ms var(--ease); }
+.row:hover .t { transform: translateX(10px); }
+
+
+/* ---------- formák, gradiensek, betűk ---------------------------------
+ * A formanyelv a Ratio Műhely mintájából jön: kör, negyedkör, háromszög.
+ * A gradiens szürkéből fehérbe megy, szín nélkül. A nagy betű a lap
+ * hátterében mozog, lassabban mint a tartalom.
+ */
+
+/* háttér-mező a nyitás mögött */
+.field { position: absolute; inset: 0; overflow: clip; pointer-events: none; z-index: 0; }
+
+.work, .light, .closing { position: relative; }
+.work > *, .light > *, .closing > * { position: relative; z-index: 1; }
+.work > .field, .closing > .field { position: absolute; inset: 0; z-index: 0; }
+
+.shape { position: absolute; opacity: 0.9; will-change: transform; }
+.shape.circle { border-radius: 50%; }
+.shape.quarter { border-radius: 100% 0 0 0; }
+.shape.tri { width: 0; height: 0; background: none !important; }
+.g-grey  { background: #EFEEE9; }
+.g-white { background: #F7F6F3; }
+.g-line  { background: #E6E5DF; }
+
+
+/* óriás betű a munkák mögött */
+.bigmark {
+  position: absolute; left: 50%; top: 6%;
+  transform: translate3d(-50%, 0, 0);
+  font-size: min(46vw, 42rem); line-height: 0.8; font-weight: 500;
+  letter-spacing: -0.06em;
+  color: #F4F3EF;                  /* tomor, a hatterhez kozeli tonus */
+  pointer-events: none; z-index: 0; user-select: none;
+  will-change: transform;
+}
+
+/* világos sáv: a lap egyetlen fehér foltja */
+.light {
+  background: #0E0E0C;
+  color: #F4F3EF;
+  padding-block: clamp(5rem, 12vw, 9rem);
+  margin-block: var(--gap-xl);
+}
+.light .inner { display: grid; grid-template-columns: 40fr 60fr; gap: var(--gap-m); align-items: start; }
+.light p.small { margin: 0; font-size: var(--t-small); color: #97968E; }
+.light blockquote {
+  margin: 0; font-size: var(--t-sub); line-height: 1.06; letter-spacing: -0.035em;
+  font-weight: 500; text-wrap: balance;
+}
+.light .sign { margin: var(--gap-m) 0 0; font-size: var(--t-small); color: #97968E; }
+@media (max-width: 800px) { .light .inner { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .shape, .bigmark { transform: none !important; }
+}
+
+
+/* ---------- távcső réteg ---------------------------------------------
+ * Egy fedőlap a lap fölött, amiből két kör ki van vágva: a tartalmat
+ * ezen a két körön át látod. A kivágás a kurzort követi. Alapból ki van
+ * kapcsolva, mert az oldalt olvasni is kell — gombbal vagy T betűvel megy.
+ */
+.scope {
+  position: fixed; inset: 0; z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 420ms var(--ease);
+  --sx: 50vw; --sy: 45vh; --sr: clamp(120px, 23vw, 350px); --sd: calc(var(--sr) * 0.70);
+}
+body.scope-on .scope { opacity: 1; }
+
+/* a fedőlap: ott látszik, ahol EGYIK körben sincs benne a pont */
+.scope .sheet {
+  position: absolute; inset: 0;
+  background: var(--bg);
+  -webkit-mask-image:
+    radial-gradient(circle at calc(var(--sx) - var(--sd)) var(--sy), transparent 0 calc(var(--sr) * 0.88), #000 var(--sr)),
+    radial-gradient(circle at calc(var(--sx) + var(--sd)) var(--sy), transparent 0 calc(var(--sr) * 0.88), #000 var(--sr));
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(circle at calc(var(--sx) - var(--sd)) var(--sy), transparent 0 calc(var(--sr) * 0.88), #000 var(--sr)),
+    radial-gradient(circle at calc(var(--sx) + var(--sd)) var(--sy), transparent 0 calc(var(--sr) * 0.88), #000 var(--sr));
+  mask-composite: intersect;
+}
+
+.scope-btn {
+  position: fixed; left: var(--edge); bottom: clamp(1rem, 2.5vw, 2rem);
+  z-index: 31;
+  font: inherit; font-size: var(--t-small);
+  color: var(--fg); background: var(--bg);
+  border: 1px solid var(--rule); border-radius: 999px;
+  padding: 0.5rem 0.95rem; cursor: pointer;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.scope-btn:hover, .scope-btn:focus-visible { border-color: var(--accent); color: var(--accent); }
+.scope-btn[aria-pressed="true"] { border-color: var(--fg); }
+@media (max-width: 640px) { .scope { --sd: 0px; } }   /* kis kepernyon egy cso */
+
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .mask > i, .w > i { transform: none !important; transition: none; }
+  .shot { clip-path: none !important; transition: none; }
+  .shot img { transform: scale(1.05) !important; transition: none; }
+  .card:hover, .row:hover .t { transform: none; }
+  * { transition-duration: 1ms !important; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#work">Skip to content</a>
+
+<div class="scope" aria-hidden="true">
+  <div class="sheet"></div>
+</div>
+<button class="scope-btn" type="button" aria-pressed="false">Telescope</button>
+
+
+<header class="stage">
+  <div class="lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+  <div class="pad stage-top">
+    <nav class="nav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <div class="pad stage-mid">
+    <p class="stage-line">Visual identity, packaging and interface design. Budapest, since 2018.</p>
+  </div>
+
+  <div class="crossing" id="mark3d"></div>
+
+  <canvas class="fieldc" aria-hidden="true"></canvas>
+  <h1 class="sr-only">GABOS.CO — József Gábos, brand and interface design</h1>
+</header>
+
+<section class="pad services">
+  <div class="sec-head" data-reveal>
+    <h2>What I do</h2>
+    <p class="muted">
+      Identity and print design are home ground for me, but interface work has
+      run alongside it from the start. Two sides of the same job.
+    </p>
+  </div>
+
+  <div class="cards">
+    <article class="card" data-reveal style="--i:0">
+      <p class="no muted">01</p>
+      <div>
+        <h3>Identity and marks</h3>
+        <p>Logotypes, identity systems, colour, typography, and the rules that hold them together.</p>
+      </div>
+    </article>
+    <article class="card" data-reveal style="--i:1">
+      <p class="no muted">02</p>
+      <div>
+        <h3>Packaging and print</h3>
+        <p>Product ranges, boxes, labels, publications, posters. Prepared through to press.</p>
+      </div>
+    </article>
+    <article class="card" data-reveal style="--i:2">
+      <p class="no muted">03</p>
+      <div>
+        <h3>Interfaces</h3>
+        <p>Websites, apps and internal systems, designed alongside developers.</p>
+      </div>
+    </article>
+    <article class="card" data-reveal style="--i:3">
+      <p class="no muted">04</p>
+      <div>
+        <h3>Letterforms</h3>
+        <p>Custom letterforms and wordmarks when an off-the-shelf typeface will not do.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="pad work" id="work">
+  <span class="bigmark" aria-hidden="true" data-sp="0.08">G</span>
+  <div class="sec-head" data-reveal>
+    <h2>Selected work</h2>
+    <p class="muted">Visual identity, packaging and interface design since 2018.</p>
+  </div>
+
+
+  <article class="project" data-reveal>
+    <div class="head">
+      <p class="kind muted">Identity and campaign for an IT company</p>
+      <div>
+        <h3>GHT-SYS</h3>
+        <p class="desc">
+          A company that builds and operates information technology and systems,
+          and within a few years became involved internationally across most
+          areas of IT development. The identity was made to support that
+          growth: an anthracite base, two strong complementary colours, and a
+          typeface suited to programming and printed circuit boards.
+        </p>
+      </div>
+    </div>
+    <div class="shots">
+      <div class="shot wide"><img src="img/ghtsys.jpg" alt="GHT-SYS kampányplakát egy esti villamosmegállóban, narancs alapon fehér szöveggel." loading="lazy" decoding="async"></div>
+    </div>
+  </article>
+
+  <article class="project" data-reveal>
+    <div class="head">
+      <p class="kind muted">Identity, packaging and online store</p>
+      <div>
+        <h3>Alpok Water</h3>
+        <p class="desc">
+          A company operating across Europe that improves water quality at both
+          residential and industrial levels, aiming to bring tap water to a
+          level where nobody needs to reach for bottled mineral water. The mark
+          holds a mountain and a drop of water in one form. On ELIX, the
+          flagship reverse-osmosis purifier, the X of the logotype works as the
+          filter itself, and the pack is blue rather than the competition's
+          white so it separates on the shelf.
+        </p>
+      </div>
+    </div>
+    <div class="shots">
+      <div class="shot half"><img src="img/alpok-mark.jpg" alt="The Alpok Water mark over a mountain peak: a drop of water inside the mountain." loading="lazy" decoding="async"></div>
+      <div class="shot half" style="--i:1"><img src="img/elixpack.jpg" alt="ELIX water purifier packaging and identity board." loading="lazy" decoding="async"></div>
+      <div class="shot wide" style="--i:2"><img src="img/alpok.jpg" alt="Alpok Water online store home screen in desktop and mobile view." loading="lazy" decoding="async"></div>
+    </div>
+  </article>
+
+  <article class="project" data-reveal>
+    <div class="head">
+      <p class="kind muted">Interface design, learning platform</p>
+      <div>
+        <h3>Campus.swiss</h3>
+        <p class="desc">
+          Login, marketplace, training data sheet and registration. The full
+          flow of a learning platform, from the first click through to the
+          order summary.
+        </p>
+      </div>
+    </div>
+    <div class="shots">
+      <div class="shot wide"><img src="img/campus.jpg" alt="Campus.swiss marketplace interface: recommended courses in a card layout." loading="lazy" decoding="async"></div>
+    </div>
+  </article>
+</section>
+
+
+<section class="light">
+  <div class="pad inner">
+    <p class="small" data-reveal>How I work</p>
+    <div data-reveal>
+      <blockquote>An identity is good when it stays recognisable in twenty different places, and awkward in none of them.</blockquote>
+      <p class="sign">A mark is decided at its smallest size, not on the presentation slide.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pad more">
+  <div class="sec-head" data-reveal>
+    <h2>Further work</h2>
+    <p class="muted">Interface work at a software company and on a freelance basis.</p>
+  </div>
+  <div>
+    <div class="row" data-reveal style="--i:0"><span class="t">Swiss Re</span><p class="d">Webinar platform: login, marketplace, speaker information, registration</p><p class="y">Interface</p></div>
+    <div class="row" data-reveal style="--i:1"><span class="t">SevenFriday</span><p class="d">Luxury watch brand, special landing pages</p><p class="y">Web</p></div>
+    <div class="row" data-reveal style="--i:2"><span class="t">Wellform</span><p class="d">Active tech brand, landing and subpages</p><p class="y">Web</p></div>
+    <div class="row" data-reveal style="--i:3"><span class="t">Cultural publications</span><p class="d">Book, merchandise and website for exhibitions</p><p class="y">Print</p></div>
+  </div>
+</section>
+
+<section class="pad about" id="about">
+  <p class="muted" data-reveal>About</p>
+  <div class="body">
+    <div data-reveal>
+      <p>
+        I am a graphic designer based in Budapest, specialising in visual
+        identity, print and digital design. I earned my MA in Graphic Design
+        from the Hungarian University of Fine Arts, and during my studies I was
+        already working on real projects, in agency environments and on
+        independent commissions alike.
+      </p>
+      <p>
+        Early on I took smaller personal projects, usually visual identities and
+        the printed material that came with them. That is where I got to know
+        designing for print and creating marks, and it remains my preferred
+        ground. In my second year at university I joined a cosmetics company,
+        where I developed the design of the product range in line with the
+        identity and designed the packaging for new products.
+      </p>
+      <p>
+        Meanwhile a software development company brought me in as a UI designer.
+        I learned Figma there and worked directly with developers for the first
+        time, which is a perspective I still design with. I built interfaces for
+        commercial, business optimisation and educational systems, for domestic
+        and foreign companies alike.
+      </p>
+      <p>
+        I currently work as a Senior Graphic Designer at an international company
+        with Hungarian roots, where beyond the usual design work I take part in
+        the company's global visual presence.
+      </p>
+      <p class="muted">Illustrator, Photoshop, InDesign, Figma, Glyphs.</p>
+    </div>
+    <ul class="cv">
+      <li data-reveal style="--i:0"><span class="year">2024 —</span><span>Senior Graphic Designer, international company</span></li>
+      <li data-reveal style="--i:1"><span class="year">2021—2023</span><span>Medior Graphic Designer, production agency</span></li>
+      <li data-reveal style="--i:2"><span class="year">2020—2021</span><span>UI Designer, software development company</span></li>
+      <li data-reveal style="--i:3"><span class="year">2019—2021</span><span>Graphic Designer, cosmetics industry</span></li>
+      <li data-reveal style="--i:4"><span class="year">2018 —</span><span>Freelance commissions</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="closing pad" id="contact">
+  <div class="field" aria-hidden="true">
+    <span class="shape circle g-grey" data-sp="-0.06" style="width:26vw;height:26vw;left:-8vw;bottom:-6vw"></span>
+  </div>
+  <p class="say muted" data-reveal>Let us start</p>
+  <a class="mail" href="mailto:hello@gabos.co" data-reveal style="--d:80ms">hello@gabos.co</a>
+  <div class="foot" data-reveal>
+    <p class="muted">József Gábos, Budapest</p>
+    <p>gabos.co</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('[data-reveal]');
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('seen'); });
+    return;
+  }
+
+  // A nagy címeket szavakra bontjuk, hogy sorban érkezzenek.
+  document.querySelectorAll('.project h3, .sec-head h2').forEach(function (h) {
+    var words = h.textContent.trim().split(/\s+/);
+    h.textContent = '';
+    words.forEach(function (word, i) {
+      var span = document.createElement('span');
+      span.className = 'w';
+      span.style.setProperty('--w', i);
+      var inner = document.createElement('i');
+      inner.textContent = word;
+      span.appendChild(inner);
+      h.appendChild(span);
+      if (i < words.length - 1) h.appendChild(document.createTextNode(' '));
+    });
+    var host = h.closest('[data-reveal]');
+    if (host) host.classList.add('has-mask');
+  });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('seen');
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.06 });
+  items.forEach(function (el) { io.observe(el); });
+
+  // Finom parallax a képeken: csak transform, passzív figyelő, képkockához kötve.
+  var shots = [].slice.call(document.querySelectorAll('.shot img'));
+  var ticking = false;
+  function frame() {
+    var vh = window.innerHeight;
+    shots.forEach(function (img) {
+      var host = img.parentElement;
+      var box = host.getBoundingClientRect();
+      if (box.bottom < -200 || box.top > vh + 200) return;
+      var wrapper = host.closest('[data-reveal]');
+      if (wrapper && !wrapper.classList.contains('seen')) return;
+      var p = (box.top + box.height / 2 - vh / 2) / vh;
+      img.style.transform = 'translate3d(0,' + (p * -20).toFixed(2) + 'px,0) scale(1.05)';
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(frame);
+  }, { passive: true });
+  // Formák és a nagy betű: eltérő sebességgel úsznak a görgetéssel.
+  var floats = [].slice.call(document.querySelectorAll('[data-sp]'));
+  var cross = document.querySelector('.crossing');
+  if (cross) { cross.setAttribute('data-sp', '-0.09'); floats.push(cross); }
+  function floatFrame() {
+    var y = window.scrollY;
+    floats.forEach(function (el) {
+      var sp = parseFloat(el.getAttribute('data-sp')) || 0;
+      var base = el.classList.contains('bigmark') ? 'translate3d(-50%,' : 'translate3d(0,';
+      el.style.transform = base + (y * sp).toFixed(1) + 'px,0)';
+    });
+  }
+  window.addEventListener('scroll', function () { requestAnimationFrame(floatFrame); }, { passive: true });
+  floatFrame();
+
+  window.addEventListener('resize', frame, { passive: true });
+})();
+</script>
+
+
+<script>
+/* Karaktermező a nyitó színben — teli, átlós márkajellel.
+ * Minden cella kap jelet: kívül halvány, az átlós GABOS.CO betűiben sötét.
+ * A rácsot a kód tartja (saját pozícióra rajzolt glifák), ezért nem kell
+ * monospace betű hozzá. A szöveges elemek helyét kihagyjuk, hogy olvasható
+ * maradjon. Reszponzív: a cellaméret és a jel mérete a vászonból jön.
+ */
+(function () {
+  var cv = document.querySelector('.fieldc');
+  if (!cv) return;
+  var host = cv.parentElement;
+  var ctx = cv.getContext('2d', { alpha: true });
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var WORD  = ['G','A','B','O','S','C'];                       // a markajel betui
+  var ARROW = ['\u2192','\u2197','\u2191','\u2196','\u2190','\u2199','\u2193','\u2198']; // az aramlas iranya
+
+  var mask, cols, rows, cell, w, h, dpr, holes = [];
+  var mx = -1e5, my = -1e5, hasPointer = false;   // a mutato helye a vasznon
+
+  host.addEventListener('pointermove', function (e) {
+    if (e.pointerType === 'touch') return;         // erintesnel marad az aramlas
+    var r = host.getBoundingClientRect();
+    mx = e.clientX - r.left; my = e.clientY - r.top; hasPointer = true;
+  }, { passive: true });
+  host.addEventListener('pointerleave', function () { hasPointer = false; }, { passive: true });
+
+  function measureHoles() {
+    // A mezo a SZOVEGET oleli korbe, nem a doboza szelet: soronkent kerjuk le
+    // a tenyleges sorok teglalapjait (Range.getClientRects), es csak azokat
+    // hagyjuk ki, szuk keretben. Igy nincs teljes szelessegu ures sav.
+    var hr = host.getBoundingClientRect();
+    holes = [];
+    var pad = Math.max(6, cell ? cell * 0.55 : 8);
+    host.querySelectorAll('.stage-line, .nav a').forEach(function (el) {
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var rects = range.getClientRects();
+      if (!rects.length) rects = [el.getBoundingClientRect()];
+      for (var i = 0; i < rects.length; i++) {
+        var r = rects[i];
+        if (r.width < 2 || r.height < 2) continue;
+        holes.push({
+          x: r.left - hr.left - pad,
+          y: r.top - hr.top - pad * 0.5,
+          w: r.width + pad * 2,
+          h: r.height + pad
+        });
+      }
+      range.detach && range.detach();
+    });
+  }
+
+  function build() {
+    var r = host.getBoundingClientRect();
+    w = Math.max(320, r.width); h = Math.max(360, r.height);
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = w * dpr; cv.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // reszponziv cellameret: kisebb kepernyon suru, de a cellaszam korlatos
+    cell = w < 560 ? 9 : w < 1000 ? 11 : 12;
+    cols = Math.ceil(w / cell); rows = Math.ceil(h / cell);
+    while (cols * rows > 11500) { cell += 1; cols = Math.ceil(w / cell); rows = Math.ceil(h / cell); }
+
+    // maszk: atlosan futo GABOS.CO
+    var m = document.createElement('canvas');
+    m.width = cols; m.height = rows;
+    var mc = m.getContext('2d');
+    // allo szedes, a keret aljan, majdnem teljes szelessegben
+    var size = Math.min(cols * 0.20, rows * 0.42);
+    mc.fillStyle = '#000';
+    mc.font = '600 ' + size + 'px "Geist", Helvetica, Arial, sans-serif';
+    mc.textAlign = 'center'; mc.textBaseline = 'alphabetic';
+    mc.fillText('GABOS.CO', cols / 2, rows - Math.max(3, rows * 0.15));
+    var d = mc.getImageData(0, 0, cols, rows).data;
+    mask = new Uint8Array(cols * rows);
+    for (var i = 0; i < cols * rows; i++) mask[i] = d[i * 4 + 3] > 90 ? 1 : 0;
+
+    measureHoles();
+  }
+
+  function inHole(px, py) {
+    for (var i = 0; i < holes.length; i++) {
+      var o = holes[i];
+      if (px > o.x && px < o.x + o.w && py > o.y && py < o.y + o.h) return true;
+    }
+    return false;
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    // egyetlen suly, egyetlen meret, egyetlen szin: a forma a jelekbol all ossze,
+    // nem kiemelesbol. A markajel csak abban ter el, hogy ott betuk allnak.
+    var font = '400 ' + Math.round(cell * 0.78) + 'px "Geist", Helvetica, Arial, sans-serif';
+    ctx.font = font;
+    ctx.fillStyle = 'rgba(14,14,12,0.78)';
+    for (var y = 0; y < rows; y++) {
+      var py = y * cell + cell / 2;
+      for (var x = 0; x < cols; x++) {
+        var px = x * cell + cell / 2;
+        if (inHole(px, py)) continue;
+        var inside = mask[y * cols + x];
+        var f = Math.sin(x * 0.15 + t * 0.00040)
+              + Math.sin(y * 0.19 - t * 0.00029)
+              + Math.sin((x + y) * 0.085 + t * 0.00017);
+        if (inside) {
+          ctx.fillText(WORD[Math.abs(Math.round(f * 2.4) + x + y) % WORD.length], px, py);
+        } else {
+          // Ket vektor osszege adja az irányt: az alap aramlas, es a mutato fele
+          // mutato vektor, aminek a sulya a tavolsaggal csokken. Vektorosszeg
+          // kell, nem szogatlag, kulonben a -180/+180 hataron atugrana.
+          var ang;
+          if (hasPointer) {
+            // MINDEN nyil kulon-kulon a mutatora nez, tavolsagtol fuggetlenul
+            ang = Math.atan2(my - py, mx - px);
+          } else {
+            // mutato nelkul marad a sajat aramlas
+            ang = Math.atan2(
+              Math.sin(y * 0.19 - t * 0.00029),
+              Math.sin(x * 0.15 + t * 0.00040)
+            );
+          }
+          var idx = ((Math.round(((ang + Math.PI) / (2 * Math.PI)) * 8) % 8) + 8) % 8;
+          ctx.fillText(ARROW[idx], px, py);
+        }
+      }
+    }
+  }
+
+  var raf = null, start = 0, running = false, lastDraw = 0;
+  function loop(now) {
+    if (!start) start = now;
+    if (now - lastDraw > 33) { draw(now - start); lastDraw = now; }   // ~30 fps
+    raf = requestAnimationFrame(loop);
+  }
+  function play() { if (running || reduce) return; running = true; raf = requestAnimationFrame(loop); }
+  function stop() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+
+  build();
+  if (reduce) draw(0);
+  else {
+    play();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) { e[0].isIntersecting ? play() : stop(); },
+        { threshold: 0.02 }).observe(host);
+    }
+    document.addEventListener('visibilitychange', function () { document.hidden ? stop() : play(); });
+  }
+
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () { build(); if (reduce) draw(0); }, 180);
+  }, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { build(); if (reduce) draw(0); });
+})();
+</script>
+
+<script type="module" src="mark3d.js"></script>
+
+<script>
+/* Távcső: a kivágás a kurzort követi. Csak CSS-változót írunk, ezért a
+ * böngésző nem rajzolja újra a tartalmat, csak a maszkot. */
+(function () {
+  var scope = document.querySelector('.scope');
+  var btn = document.querySelector('.scope-btn');
+  if (!scope || !btn) return;
+  var x = window.innerWidth / 2, y = window.innerHeight * 0.45, pending = false;
+
+  function apply() {
+    scope.style.setProperty('--sx', x + 'px');
+    scope.style.setProperty('--sy', y + 'px');
+    pending = false;
+  }
+  window.addEventListener('pointermove', function (e) {
+    if (!document.body.classList.contains('scope-on')) return;
+    x = e.clientX; y = e.clientY;
+    if (!pending) { pending = true; requestAnimationFrame(apply); }
+  }, { passive: true });
+
+  function toggle() {
+    var on = document.body.classList.toggle('scope-on');
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    if (on) apply();
+  }
+  btn.addEventListener('click', toggle);
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+    if (e.key === 't' || e.key === 'T') toggle();
+  });
+  apply();
+})();
+</script>
+
+</body>
+</html>
