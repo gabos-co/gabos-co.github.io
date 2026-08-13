@@ -507,8 +507,10 @@ body.uc {
 }
 .uc-stage { width: 100%; max-width: 1200px; text-align: center; }
 
+.goo-defs { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 .goo {
-  filter: url(#goo);
+  -webkit-filter: url("#goo");
+  filter: url("#goo");
   margin: 0;
   font-weight: 700;
   font-size: clamp(3rem, 13vw, 13rem);
