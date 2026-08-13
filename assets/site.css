@@ -505,7 +505,7 @@ body.uc {
   display: grid; place-items: center;
   padding: var(--edge);
 }
-.uc-stage { width: 100%; max-width: 1200px; }
+.uc-stage { width: 100%; max-width: 1200px; text-align: center; }
 
 .goo {
   filter: url(#goo);
@@ -533,7 +533,7 @@ body.uc {
 }
 
 .soonmail {
-  margin: clamp(2rem, 5vw, 3.5rem) 0 0;
+  margin: clamp(2rem, 5vw, 3.5rem) auto 0;
   font-size: var(--t-lead);
   letter-spacing: -0.02em;
   color: #161614;
