@@ -25,15 +25,22 @@
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body class="uc">
-<main class="uc-center">
-  <!-- A szuro csak a felirat kore feszul, nem az egesz kepernyore: igy
-       kevesebbet kell a bongeszonek raszterizalnia, es telefonon sem
-       pixelesedik. A feher alap a szorzo keveres miatt lathatatlan. -->
-  <div class="goo-wrap">
-    <div class="goo-layer" aria-hidden="true"><h1 class="goo"><span class="line"><span>u</span><span>n</span><span>d</span><span>e</span><span>r</span></span><span class="line"><span>c</span><span>o</span><span>n</span><span>s</span><span>t</span><span>r</span><span>u</span><span>c</span><span>t</span><span>i</span><span>o</span><span>n</span></span></h1></div>
+
+<!-- Ket egymasra fektetett, teljes kepernyos reteg.
+     Also: feher alap + elmosas + kontraszt, szorzo keveressel a szurke lapra
+     (igy a feher eltunik, csak az osszeolvadt betuk latszanak).
+     Felso: ugyanaz a felirat lathatatlanul, csak a hely tartasara, es rajta
+     az eles email-sor. -->
+<div class="goo-layer" aria-hidden="true">
+  <div class="goo-center"><h1 class="goo"><span class="line"><span>u</span><span>n</span><span>d</span><span>e</span><span>r</span></span><span class="line"><span>c</span><span>o</span><span>n</span><span>s</span><span>t</span><span>r</span><span>u</span><span>c</span><span>t</span><span>i</span><span>o</span><span>n</span></span></h1></div>
+</div>
+
+<div class="uc-front">
+  <div class="goo-center">
     <div class="ghost"><h1 class="goo"><span class="line"><span>u</span><span>n</span><span>d</span><span>e</span><span>r</span></span><span class="line"><span>c</span><span>o</span><span>n</span><span>s</span><span>t</span><span>r</span><span>u</span><span>c</span><span>t</span><span>i</span><span>o</span><span>n</span></span></h1></div>
+    <p class="soonmail">until then: <a href="mailto:hello@gabos.co">hello@gabos.co</a></p>
   </div>
-  <p class="soonmail">until then: <a href="mailto:hello@gabos.co">hello@gabos.co</a></p>
-</main>
+</div>
+
 </body>
 </html>
