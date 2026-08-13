@@ -555,11 +555,13 @@ body.uc {
 
 .soonmail {
   margin: clamp(2rem, 5vw, 3.5rem) 0 0;
+  /* A mono mindig verzalis (Jozsi szabalya, 2026-08-13). Ritkitas nelkul:
+     a tag betukoz + apro verzal kombinacio tiltott marad. */
   font-family: "Space Mono", ui-monospace, monospace;
-  font-size: clamp(0.85rem, 0.75rem + 0.55vw, 1.15rem);
+  font-size: clamp(0.8rem, 0.72rem + 0.5vw, 1.05rem);
   letter-spacing: 0;
   color: #141412;
-  text-transform: lowercase;
+  text-transform: uppercase;
 }
 .soonmail a { color: inherit; text-decoration: none; border-bottom: 2px solid rgba(20,20,18,0.28); }
 .soonmail a:hover, .soonmail a:focus-visible { border-color: #141412; }
