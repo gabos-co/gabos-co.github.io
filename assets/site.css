@@ -515,26 +515,19 @@ body.uc {
   background: radial-gradient(120% 90% at 50% 42%, #F7F6F4 0%, #EDECE9 48%, #DEDDD8 100%);
   margin: 0;
 }
-.goo-layer, .uc-front {
-  position: fixed; inset: -90px;
-  display: grid; place-items: center;
-  padding: 90px var(--edge);
-}
-.goo-layer {
-  /* Az elmosas a felirat sajat mereterol jon (em), igy telefonon is
-     ugyanolyan eros. A kontraszt szandekosan alacsony: magasabb ertekkel
-     a raszterizalas lepcsoi eles fekete szelekke valnak. */
-  font-size: clamp(2.7rem, 12.5vw, 12rem);
-  --b1: 0.030em;
-  --b2: 0.064em;
-  --b3: 0.104em;
-  background: #FFFFFF;
-  filter: blur(var(--b1)) contrast(13);
-  animation: melt 17s ease-in-out infinite;
+#goo-canvas {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  display: block;
   mix-blend-mode: multiply;
   z-index: 0;
 }
-.uc-front { z-index: 1; pointer-events: none; }
+.uc-front {
+  position: fixed; inset: 0;
+  display: grid; place-items: center;
+  padding: var(--edge);
+  z-index: 1; pointer-events: none;
+}
 .uc-front a { pointer-events: auto; }
 .goo-center { width: 100%; max-width: 1200px; text-align: center; }
 .ghost { visibility: hidden; }

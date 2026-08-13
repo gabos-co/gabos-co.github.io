@@ -26,14 +26,10 @@
 </head>
 <body class="uc">
 
-<!-- Ket egymasra fektetett, teljes kepernyos reteg.
-     Also: feher alap + elmosas + kontraszt, szorzo keveressel a szurke lapra
-     (igy a feher eltunik, csak az osszeolvadt betuk latszanak).
-     Felso: ugyanaz a felirat lathatatlanul, csak a hely tartasara, es rajta
-     az eles email-sor. -->
-<div class="goo-layer" aria-hidden="true">
-  <div class="goo-center"><h1 class="goo"><span class="line"><span>u</span><span>n</span><span>d</span><span>e</span><span>r</span></span><span class="line"><span>c</span><span>o</span><span>n</span><span>s</span><span>t</span><span>r</span><span>u</span><span>c</span><span>t</span><span>i</span><span>o</span><span>n</span></span></h1></div>
-</div>
+<!-- A felirat vaszonra rajzolodik (goo.js), hogy a felbontast mi szabjuk meg
+     es ne a bongeszo butitsa le. A lathatatlan DOM-felirat csak a helyet
+     tartja, hogy az email-sor pontosan a megfelelo magassagba keruljon. -->
+<canvas id="goo-canvas" aria-hidden="true"></canvas>
 
 <div class="uc-front">
   <div class="goo-center">
@@ -42,5 +38,6 @@
   </div>
 </div>
 
+<script src="goo.js"></script>
 </body>
 </html>
