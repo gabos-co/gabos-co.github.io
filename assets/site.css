@@ -522,13 +522,6 @@ body.uc {
   mix-blend-mode: multiply;
   z-index: 0;
 }
-/* Ha a vaszon nem ismeri a szurot (Safari egy resze), a CSS teszi ra.
-   A forras ilyenkor is teljes felbontasu, mert a vasznat mi meretezzuk. */
-.css-goo #goo-canvas {
-  --gb: 0.030em;
-  font-size: clamp(2.7rem, 12.5vw, 12rem);
-  filter: blur(var(--gb)) contrast(13);
-}
 .uc-front {
   position: fixed; inset: 0;
   display: grid; place-items: center;
