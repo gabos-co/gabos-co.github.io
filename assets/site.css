@@ -515,26 +515,28 @@ body.uc {
   background: radial-gradient(120% 90% at 50% 42%, #F7F6F4 0%, #EDECE9 48%, #DEDDD8 100%);
   margin: 0;
 }
-#goo-canvas {
-  position: fixed; inset: 0;
-  width: 100%; height: 100%;
-  display: block;
+.goo-layer, .uc-front {
+  position: fixed; inset: -90px;
+  display: grid; place-items: center;
+  padding: 90px var(--edge);
+}
+.goo-layer {
+  background: #FFFFFF;
+  /* Az elmosas merteke a szoveg mereterol jon, kulonben mobilon szetesnek
+     a betuk. Az ertek szabalytalan ritmusban no es apad: ettol ugy hat,
+     mintha a felirat hol megolvadna, hol visszaallna. */
+  /* Az elmosast a felirat sajat mereterol szamoljuk (em), nem a kepernyorol.
+     Igy telefonon ugyanolyan eros az olvadas, mint nagy monitoron. */
+  font-size: clamp(2.7rem, 12.5vw, 12rem);
+  --b1: 0.028em;
+  --b2: 0.060em;
+  --b3: 0.098em;
+  filter: blur(var(--b1)) contrast(18);
+  animation: melt 17s ease-in-out infinite;
   mix-blend-mode: multiply;
   z-index: 0;
 }
-/* Ha a vaszon nem ismeri a szurot (Safari egy resze), a CSS teszi ra.
-   A forras ilyenkor is teljes felbontasu, mert a vasznat mi meretezzuk. */
-.css-goo #goo-canvas {
-  --gb: 0.030em;
-  font-size: clamp(2.7rem, 12.5vw, 12rem);
-  filter: blur(var(--gb)) contrast(13);
-}
-.uc-front {
-  position: fixed; inset: 0;
-  display: grid; place-items: center;
-  padding: var(--edge);
-  z-index: 1; pointer-events: none;
-}
+.uc-front { z-index: 1; pointer-events: none; }
 .uc-front a { pointer-events: auto; }
 .goo-center { width: 100%; max-width: 1200px; text-align: center; }
 .ghost { visibility: hidden; }
@@ -567,18 +569,18 @@ body.uc {
 @media (prefers-reduced-motion: reduce) { .goo .line span { animation: none; } }
 
 @keyframes melt {
-  0%   { filter: blur(var(--b1)) contrast(13); }
-  9%   { filter: blur(var(--b2)) contrast(13); }
-  15%  { filter: blur(var(--b1)) contrast(13); }
-  27%  { filter: blur(var(--b3)) contrast(13); }
-  33%  { filter: blur(var(--b2)) contrast(13); }
-  38%  { filter: blur(var(--b1)) contrast(13); }
-  52%  { filter: blur(var(--b3)) contrast(13); }
-  57%  { filter: blur(var(--b1)) contrast(13); }
-  66%  { filter: blur(var(--b2)) contrast(13); }
-  71%  { filter: blur(var(--b1)) contrast(13); }
-  84%  { filter: blur(var(--b3)) contrast(13); }
-  92%  { filter: blur(var(--b2)) contrast(13); }
-  100% { filter: blur(var(--b1)) contrast(13); }
+  0%   { filter: blur(var(--b1)) contrast(18); }
+  9%   { filter: blur(var(--b2)) contrast(18); }
+  15%  { filter: blur(var(--b1)) contrast(18); }
+  27%  { filter: blur(var(--b3)) contrast(18); }
+  33%  { filter: blur(var(--b2)) contrast(18); }
+  38%  { filter: blur(var(--b1)) contrast(18); }
+  52%  { filter: blur(var(--b3)) contrast(18); }
+  57%  { filter: blur(var(--b1)) contrast(18); }
+  66%  { filter: blur(var(--b2)) contrast(18); }
+  71%  { filter: blur(var(--b1)) contrast(18); }
+  84%  { filter: blur(var(--b3)) contrast(18); }
+  92%  { filter: blur(var(--b2)) contrast(18); }
+  100% { filter: blur(var(--b1)) contrast(18); }
 }
 @media (prefers-reduced-motion: reduce) { .goo-layer { animation: none; } }

@@ -26,18 +26,26 @@
 </head>
 <body class="uc">
 
-<!-- A felirat vaszonra rajzolodik (goo.js), hogy a felbontast mi szabjuk meg
-     es ne a bongeszo butitsa le. A lathatatlan DOM-felirat csak a helyet
-     tartja, hogy az email-sor pontosan a megfelelo magassagba keruljon. -->
-<canvas id="goo-canvas" aria-hidden="true"></canvas>
+<!-- Az olvasztas nem SVG-szurovel megy, mert azt a Safari nem alkalmazza
+     megbizhatoan HTML-re. Helyette: elmosas + eros kontraszt egy feher
+     retegen, amit szorzo keveressel teszunk a szurke lapra. Igy a feher
+     eltunik, a betuk osszefolynak, es a hatter szurke marad. -->
+<div class="goo-layer" aria-hidden="true">
+  <div class="goo-center"><h1 class="goo">
+      <span class="line"><span style="--n:0">u</span><span style="--n:1">n</span><span style="--n:2">d</span><span style="--n:3">e</span><span style="--n:4">r</span></span>
+      <span class="line"><span style="--n:6">c</span><span style="--n:7">o</span><span style="--n:8">n</span><span style="--n:9">s</span><span style="--n:10">t</span><span style="--n:11">r</span><span style="--n:12">u</span><span style="--n:13">c</span><span style="--n:14">t</span><span style="--n:15">i</span><span style="--n:16">o</span><span style="--n:17">n</span></span>
+    </h1></div>
+</div>
 
 <div class="uc-front">
   <div class="goo-center">
-    <div class="ghost"><h1 class="goo"><span class="line"><span>u</span><span>n</span><span>d</span><span>e</span><span>r</span></span><span class="line"><span>c</span><span>o</span><span>n</span><span>s</span><span>t</span><span>r</span><span>u</span><span>c</span><span>t</span><span>i</span><span>o</span><span>n</span></span></h1></div>
+    <div class="ghost"><h1 class="goo">
+      <span class="line"><span style="--n:0">u</span><span style="--n:1">n</span><span style="--n:2">d</span><span style="--n:3">e</span><span style="--n:4">r</span></span>
+      <span class="line"><span style="--n:6">c</span><span style="--n:7">o</span><span style="--n:8">n</span><span style="--n:9">s</span><span style="--n:10">t</span><span style="--n:11">r</span><span style="--n:12">u</span><span style="--n:13">c</span><span style="--n:14">t</span><span style="--n:15">i</span><span style="--n:16">o</span><span style="--n:17">n</span></span>
+    </h1></div>
     <p class="soonmail">until then: <a href="mailto:hello@gabos.co">hello@gabos.co</a></p>
   </div>
 </div>
 
-<script src="goo.js"></script>
 </body>
 </html>
