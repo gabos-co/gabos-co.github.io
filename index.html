@@ -25,22 +25,27 @@
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body class="uc">
-<div class="uc-stage">
-  <h1 class="goo">
-    <span class="line"><span style="--n:0">u</span><span style="--n:1">n</span><span style="--n:2">d</span><span style="--n:3">e</span><span style="--n:4">r</span></span>
-    <span class="line"><span style="--n:6">c</span><span style="--n:7">o</span><span style="--n:8">n</span><span style="--n:9">s</span><span style="--n:10">t</span><span style="--n:11">r</span><span style="--n:12">u</span><span style="--n:13">c</span><span style="--n:14">t</span><span style="--n:15">i</span><span style="--n:16">o</span><span style="--n:17">n</span></span>
-  </h1>
-  <p class="soonmail">until then: <a href="mailto:hello@gabos.co">hello@gabos.co</a></p>
+
+<!-- Az olvasztas nem SVG-szurovel megy, mert azt a Safari nem alkalmazza
+     megbizhatoan HTML-re. Helyette: elmosas + eros kontraszt egy feher
+     retegen, amit szorzo keveressel teszunk a szurke lapra. Igy a feher
+     eltunik, a betuk osszefolynak, es a hatter szurke marad. -->
+<div class="goo-layer" aria-hidden="true">
+  <div class="goo-center"><h1 class="goo">
+      <span class="line"><span style="--n:0">u</span><span style="--n:1">n</span><span style="--n:2">d</span><span style="--n:3">e</span><span style="--n:4">r</span></span>
+      <span class="line"><span style="--n:6">c</span><span style="--n:7">o</span><span style="--n:8">n</span><span style="--n:9">s</span><span style="--n:10">t</span><span style="--n:11">r</span><span style="--n:12">u</span><span style="--n:13">c</span><span style="--n:14">t</span><span style="--n:15">i</span><span style="--n:16">o</span><span style="--n:17">n</span></span>
+    </h1></div>
 </div>
 
-<svg class="goo-defs" aria-hidden="true" focusable="false">
-  <defs>
-    <filter id="goo">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"/>
-      <feColorMatrix in="blur" mode="matrix"
-        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -13" result="goo"/>
-    </filter>
-  </defs>
-</svg>
+<div class="uc-front">
+  <div class="goo-center">
+    <div class="ghost"><h1 class="goo">
+      <span class="line"><span style="--n:0">u</span><span style="--n:1">n</span><span style="--n:2">d</span><span style="--n:3">e</span><span style="--n:4">r</span></span>
+      <span class="line"><span style="--n:6">c</span><span style="--n:7">o</span><span style="--n:8">n</span><span style="--n:9">s</span><span style="--n:10">t</span><span style="--n:11">r</span><span style="--n:12">u</span><span style="--n:13">c</span><span style="--n:14">t</span><span style="--n:15">i</span><span style="--n:16">o</span><span style="--n:17">n</span></span>
+    </h1></div>
+    <p class="soonmail">until then: <a href="mailto:hello@gabos.co">hello@gabos.co</a></p>
+  </div>
+</div>
+
 </body>
 </html>

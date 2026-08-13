@@ -493,35 +493,45 @@ body.sub { background: var(--bg); }
 }
 
 
-/* ---------- under construction: morphing felirat ---------------------
- * A betuk kulon-kulon lelegeznek, es egy SVG szuro osszeolvasztja oket:
- * elmosas, majd az atlatszosag kontrasztjanak felhuzasa. Ettol lesz
- * cseppszeru a forma, ahogy a mintan.
+
+/* ---------- under construction ---------------------------------------
+ * Ket egymasra fektetett reteg. Az also adja az osszeolvado betuket
+ * (elmosas + kontraszt, szorzo keveressel), a felso a mereteket tartja
+ * es rajta ul az eles email-sor. Mindketto ugyanugy kozepre zar, ezert
+ * pontosan fedik egymast.
  */
 body.uc {
   min-height: 100svh;
-  background:
-    radial-gradient(120% 90% at 50% 40%, #FBFBFA 0%, #EFEEEB 45%, #DEDDD8 100%);
-  display: grid; place-items: center;
-  padding: var(--edge);
-}
-.uc-stage { width: 100%; max-width: 1200px; text-align: center; }
-
-.goo-defs { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-.goo {
-  -webkit-filter: url("#goo");
-  filter: url("#goo");
+  background: radial-gradient(120% 90% at 50% 42%, #F7F6F4 0%, #EDECE9 48%, #DEDDD8 100%);
   margin: 0;
-  font-weight: 700;
-  font-size: clamp(3rem, 13vw, 13rem);
-  line-height: 0.82;
+}
+.goo-layer, .uc-front {
+  position: fixed; inset: -90px;
+  display: grid; place-items: center;
+  padding: 90px var(--edge);
+}
+.goo-layer {
+  background: #FFFFFF;
+  /* az elmosas a szoveg mereterol jon, kulonben mobilon szetesnek a betuk */
+  filter: blur(clamp(2.5px, 0.85vw, 10px)) contrast(18);
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+.uc-front { z-index: 1; pointer-events: none; }
+.uc-front a { pointer-events: auto; }
+.goo-center { width: 100%; max-width: 1200px; text-align: center; }
+.ghost { visibility: hidden; }
+
+.goo {
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(2.7rem, 12.5vw, 12rem);
+  line-height: 0.84;
   letter-spacing: -0.055em;
-  color: #161614;
+  color: #141412;
   text-transform: lowercase;
 }
 .goo .line { display: block; }
-/* A hullam vegigfut a feliraton: minden betu ugyanazt a lokest kapja,
-   csak keslelteve, a sajat helye szerint. */
 .goo .line span {
   display: inline-block;
   animation: wave 3.6s ease-in-out infinite;
@@ -529,21 +539,19 @@ body.uc {
   transform-origin: 50% 62%;
 }
 @keyframes wave {
-  0%,  55%, 100% { transform: translate3d(0, 0, 0) scale(1, 1); }
-  18%            { transform: translate3d(0, 0.035em, 0) scale(1.16, 0.88); }
-  34%            { transform: translate3d(0, -0.03em, 0) scale(0.9, 1.14); }
+  0%, 55%, 100% { transform: translate3d(0, 0, 0) scale(1, 1); }
+  18%           { transform: translate3d(0, 0.035em, 0) scale(1.16, 0.88); }
+  34%           { transform: translate3d(0, -0.03em, 0) scale(0.9, 1.14); }
 }
 
 .soonmail {
-  margin: clamp(2rem, 5vw, 3.5rem) auto 0;
+  margin: clamp(2rem, 5vw, 3.5rem) 0 0;
   font-size: var(--t-lead);
   letter-spacing: -0.02em;
-  color: #161614;
+  color: #141412;
   text-transform: lowercase;
 }
-.soonmail a { color: inherit; text-decoration: none; border-bottom: 2px solid #16161433; }
-.soonmail a:hover, .soonmail a:focus-visible { border-color: #161614; }
+.soonmail a { color: inherit; text-decoration: none; border-bottom: 2px solid rgba(20,20,18,0.28); }
+.soonmail a:hover, .soonmail a:focus-visible { border-color: #141412; }
 
-@media (prefers-reduced-motion: reduce) {
-  .goo .line span { animation: none; }
-}
+@media (prefers-reduced-motion: reduce) { .goo .line span { animation: none; } }
