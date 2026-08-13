@@ -494,6 +494,16 @@ body.sub { background: var(--bg); }
 
 
 
+/* Space Mono, SIL Open Font License 1.1 (fonts/OFL-SpaceMono.txt).
+   Jozsi kifejezett kerese az also sorra, 2026-08-13. */
+@font-face {
+  font-family: "Space Mono";
+  src: url("../fonts/SpaceMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ---------- under construction ---------------------------------------
  * Ket egymasra fektetett reteg. Az also adja az osszeolvado betuket
  * (elmosas + kontraszt, szorzo keveressel), a felso a mereteket tartja
@@ -542,8 +552,9 @@ body.uc {
 
 .soonmail {
   margin: clamp(2rem, 5vw, 3.5rem) 0 0;
-  font-size: var(--t-lead);
-  letter-spacing: -0.02em;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: clamp(0.85rem, 0.75rem + 0.55vw, 1.15rem);
+  letter-spacing: 0;
   color: #141412;
   text-transform: lowercase;
 }
