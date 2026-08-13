@@ -17,6 +17,11 @@ import shutil
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://gabos.co"
 
+# Amig a nyitolapon "Coming soon" all, az aloldalak se kerulhetnek a keresobe:
+# kulonben a Google egy fel oldalt jegyezne meg elso benyomaskent.
+# Egy sor atirasa nyitja meg az egeszet, ha Jozsi kesz ra.
+COMING_SOON = True
+
 # ---------------------------------------------------------------- tartalom
 
 PROJECTS = [
@@ -247,6 +252,7 @@ DESCS = {
 
 def head(lang, title, desc, path, depth):
     up = "../" * depth
+    noindex = '\n<meta name="robots" content="noindex, follow">' if COMING_SOON else ""
     other = "hu" if lang == "en" else "en"
     alt = alt_path(path, lang)
     return f"""<!doctype html>
@@ -256,7 +262,7 @@ def head(lang, title, desc, path, depth):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="light">{noindex}
 <link rel="canonical" href="{SITE}{path}">
 <link rel="alternate" hreflang="{lang}" href="{SITE}{path}">
 <link rel="alternate" hreflang="{other}" href="{SITE}{alt}">
@@ -425,7 +431,7 @@ if __name__ == "__main__":
         made.append(build_contact(lang))
 
     # oldalterkep
-    urls = ["/", "/hu/"] + made
+    urls = ["/", "/hu/"] if COMING_SOON else (["/", "/hu/"] + made)
     xml = ['<?xml version="1.0" encoding="UTF-8"?>',
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u in sorted(set(urls)):

@@ -491,3 +491,8 @@ body.sub { background: var(--bg); }
   .wrow { grid-template-columns: 1fr; }
   .wrow .y { text-align: left; }
 }
+
+/* ---------- coming soon ---------- */
+.soonmail { margin: 0; font-size: var(--t-small); }
+.soonmail a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--rule); }
+.soonmail a:hover, .soonmail a:focus-visible { color: var(--accent); border-color: var(--accent); }
