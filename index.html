@@ -25,27 +25,15 @@
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body class="uc">
-
-<!-- Az olvasztas nem SVG-szurovel megy, mert azt a Safari nem alkalmazza
-     megbizhatoan HTML-re. Helyette: elmosas + eros kontraszt egy feher
-     retegen, amit szorzo keveressel teszunk a szurke lapra. Igy a feher
-     eltunik, a betuk osszefolynak, es a hatter szurke marad. -->
-<div class="goo-layer" aria-hidden="true">
-  <div class="goo-center"><h1 class="goo">
-      <span class="line"><span style="--n:0">u</span><span style="--n:1">n</span><span style="--n:2">d</span><span style="--n:3">e</span><span style="--n:4">r</span></span>
-      <span class="line"><span style="--n:6">c</span><span style="--n:7">o</span><span style="--n:8">n</span><span style="--n:9">s</span><span style="--n:10">t</span><span style="--n:11">r</span><span style="--n:12">u</span><span style="--n:13">c</span><span style="--n:14">t</span><span style="--n:15">i</span><span style="--n:16">o</span><span style="--n:17">n</span></span>
-    </h1></div>
-</div>
-
-<div class="uc-front">
-  <div class="goo-center">
-    <div class="ghost"><h1 class="goo">
-      <span class="line"><span style="--n:0">u</span><span style="--n:1">n</span><span style="--n:2">d</span><span style="--n:3">e</span><span style="--n:4">r</span></span>
-      <span class="line"><span style="--n:6">c</span><span style="--n:7">o</span><span style="--n:8">n</span><span style="--n:9">s</span><span style="--n:10">t</span><span style="--n:11">r</span><span style="--n:12">u</span><span style="--n:13">c</span><span style="--n:14">t</span><span style="--n:15">i</span><span style="--n:16">o</span><span style="--n:17">n</span></span>
-    </h1></div>
-    <p class="soonmail">until then: <a href="mailto:hello@gabos.co">hello@gabos.co</a></p>
+<main class="uc-center">
+  <!-- A szuro csak a felirat kore feszul, nem az egesz kepernyore: igy
+       kevesebbet kell a bongeszonek raszterizalnia, es telefonon sem
+       pixelesedik. A feher alap a szorzo keveres miatt lathatatlan. -->
+  <div class="goo-wrap">
+    <div class="goo-layer" aria-hidden="true"><h1 class="goo"><span class="line"><span>u</span><span>n</span><span>d</span><span>e</span><span>r</span></span><span class="line"><span>c</span><span>o</span><span>n</span><span>s</span><span>t</span><span>r</span><span>u</span><span>c</span><span>t</span><span>i</span><span>o</span><span>n</span></span></h1></div>
+    <div class="ghost"><h1 class="goo"><span class="line"><span>u</span><span>n</span><span>d</span><span>e</span><span>r</span></span><span class="line"><span>c</span><span>o</span><span>n</span><span>s</span><span>t</span><span>r</span><span>u</span><span>c</span><span>t</span><span>i</span><span>o</span><span>n</span></span></h1></div>
   </div>
-</div>
-
+  <p class="soonmail">until then: <a href="mailto:hello@gabos.co">hello@gabos.co</a></p>
+</main>
 </body>
 </html>
