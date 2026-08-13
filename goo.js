@@ -106,14 +106,30 @@
     return STOPS[0][1] * fontPx;
   }
 
+  // Ket ut: ha a vaszon ismeri a szurot, ott rajzoljuk (legjobb minoseg).
+  // Ha nem (a Safari egy resze nem), akkor a vaszon csak az eles forrast
+  // adja, es az elmosast a CSS teszi ra az elemre. Igy a forras mindenkeppen
+  // teljes felbontasu marad, es a hatas sem marad el.
+  var canFilter = (function () {
+    var t = document.createElement('canvas').getContext('2d');
+    t.filter = 'blur(2px)';
+    return t.filter === 'blur(2px)';
+  })();
+
   function render(ms) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    ctx.filter = 'blur(' + blurAt(ms).toFixed(2) + 'px) contrast(13)';
-    ctx.drawImage(off, 0, 0, W, H);
-    ctx.filter = 'none';
+    if (canFilter) {
+      ctx.filter = 'blur(' + blurAt(ms).toFixed(2) + 'px) contrast(13)';
+      ctx.drawImage(off, 0, 0, W, H);
+      ctx.filter = 'none';
+    } else {
+      if (!cssDrawn) { ctx.drawImage(off, 0, 0, W, H); cssDrawn = true; }
+      cv.style.setProperty('--gb', blurAt(ms).toFixed(2) + 'px');
+    }
   }
 
+  var cssDrawn = false;
   var raf = null, start = 0, last = 0, running = false;
   function loop(now) {
     if (!start) start = now;
@@ -126,6 +142,8 @@
   function boot() {
     layout();
     drawSource();
+    cssDrawn = false;
+    document.documentElement.classList.toggle('css-goo', !canFilter);
     if (reduce) render(0); else { stop(); start = 0; play(); }
   }
 
