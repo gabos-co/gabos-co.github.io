@@ -525,9 +525,12 @@ body.uc {
   /* Az elmosas merteke a szoveg mereterol jon, kulonben mobilon szetesnek
      a betuk. Az ertek szabalytalan ritmusban no es apad: ettol ugy hat,
      mintha a felirat hol megolvadna, hol visszaallna. */
-  --b1: clamp(1.4px, 0.42vw, 5px);
-  --b2: clamp(3px,   1.0vw,  11px);
-  --b3: clamp(4.4px, 1.5vw,  17px);
+  /* Az elmosast a felirat sajat mereterol szamoljuk (em), nem a kepernyorol.
+     Igy telefonon ugyanolyan eros az olvadas, mint nagy monitoron. */
+  font-size: clamp(2.7rem, 12.5vw, 12rem);
+  --b1: 0.028em;
+  --b2: 0.060em;
+  --b3: 0.098em;
   filter: blur(var(--b1)) contrast(18);
   animation: melt 17s ease-in-out infinite;
   mix-blend-mode: multiply;
