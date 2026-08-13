@@ -512,8 +512,14 @@ body.uc {
 }
 .goo-layer {
   background: #FFFFFF;
-  /* az elmosas a szoveg mereterol jon, kulonben mobilon szetesnek a betuk */
-  filter: blur(clamp(2.5px, 0.85vw, 10px)) contrast(18);
+  /* Az elmosas merteke a szoveg mereterol jon, kulonben mobilon szetesnek
+     a betuk. Az ertek szabalytalan ritmusban no es apad: ettol ugy hat,
+     mintha a felirat hol megolvadna, hol visszaallna. */
+  --b1: clamp(1.4px, 0.42vw, 5px);
+  --b2: clamp(3px,   1.0vw,  11px);
+  --b3: clamp(4.4px, 1.5vw,  17px);
+  filter: blur(var(--b1)) contrast(18);
+  animation: melt 17s ease-in-out infinite;
   mix-blend-mode: multiply;
   z-index: 0;
 }
@@ -532,17 +538,7 @@ body.uc {
   text-transform: lowercase;
 }
 .goo .line { display: block; }
-.goo .line span {
-  display: inline-block;
-  animation: wave 3.6s ease-in-out infinite;
-  animation-delay: calc(var(--n) * 0.115s);
-  transform-origin: 50% 62%;
-}
-@keyframes wave {
-  0%, 55%, 100% { transform: translate3d(0, 0, 0) scale(1, 1); }
-  18%           { transform: translate3d(0, 0.035em, 0) scale(1.16, 0.88); }
-  34%           { transform: translate3d(0, -0.03em, 0) scale(0.9, 1.14); }
-}
+.goo .line span { display: inline-block; }   /* a betuk allnak, csak az olvadas valtozik */
 
 .soonmail {
   margin: clamp(2rem, 5vw, 3.5rem) 0 0;
@@ -555,3 +551,20 @@ body.uc {
 .soonmail a:hover, .soonmail a:focus-visible { border-color: #141412; }
 
 @media (prefers-reduced-motion: reduce) { .goo .line span { animation: none; } }
+
+@keyframes melt {
+  0%   { filter: blur(var(--b1)) contrast(18); }
+  9%   { filter: blur(var(--b2)) contrast(18); }
+  15%  { filter: blur(var(--b1)) contrast(18); }
+  27%  { filter: blur(var(--b3)) contrast(18); }
+  33%  { filter: blur(var(--b2)) contrast(18); }
+  38%  { filter: blur(var(--b1)) contrast(18); }
+  52%  { filter: blur(var(--b3)) contrast(18); }
+  57%  { filter: blur(var(--b1)) contrast(18); }
+  66%  { filter: blur(var(--b2)) contrast(18); }
+  71%  { filter: blur(var(--b1)) contrast(18); }
+  84%  { filter: blur(var(--b3)) contrast(18); }
+  92%  { filter: blur(var(--b2)) contrast(18); }
+  100% { filter: blur(var(--b1)) contrast(18); }
+}
+@media (prefers-reduced-motion: reduce) { .goo-layer { animation: none; } }
