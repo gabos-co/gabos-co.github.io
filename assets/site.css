@@ -492,45 +492,56 @@ body.sub { background: var(--bg); }
   .wrow .y { text-align: left; }
 }
 
-/* ---------- coming soon ---------- */
-.soontitle {
-  margin: 0;
-  font-size: clamp(2.6rem, 9.6vw, 11rem);
-  line-height: 0.84;
-  letter-spacing: -0.05em;
-  font-weight: 500;
-  text-transform: uppercase;
-  max-width: 12ch;
-}
-.soontitle .mask { display: block; overflow: clip; padding-bottom: 0.06em; }
-.soontitle .mask > i {
-  display: block; font-style: inherit;
-  transform: translate3d(0, 110%, 0);
-  animation: uc-rise 1000ms var(--ease) forwards;
-  animation-delay: calc(var(--i, 0) * 140ms + 120ms);
-}
-@keyframes uc-rise { to { transform: none; } }
 
-/* a masodik sor sulya lassan lelegzik: valtozo betu, ezert lehet */
-.soontitle .thin > i {
-  font-weight: 200; letter-spacing: -0.04em;
-  animation: uc-rise 1000ms var(--ease) forwards,
-             uc-breathe 7s ease-in-out 1.2s infinite alternate;
+/* ---------- under construction: morphing felirat ---------------------
+ * A betuk kulon-kulon lelegeznek, es egy SVG szuro osszeolvasztja oket:
+ * elmosas, majd az atlatszosag kontrasztjanak felhuzasa. Ettol lesz
+ * cseppszeru a forma, ahogy a mintan.
+ */
+body.uc {
+  min-height: 100svh;
+  background:
+    radial-gradient(120% 90% at 50% 40%, #FBFBFA 0%, #EFEEEB 45%, #DEDDD8 100%);
+  display: grid; place-items: center;
+  padding: var(--edge);
 }
-@keyframes uc-breathe { from { font-variation-settings: "wght" 200; } to { font-variation-settings: "wght" 360; } }
+.uc-stage { width: 100%; max-width: 1200px; }
+
+.goo {
+  filter: url(#goo);
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(3rem, 13vw, 13rem);
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+  color: #161614;
+  text-transform: lowercase;
+}
+.goo .line { display: block; }
+/* A hullam vegigfut a feliraton: minden betu ugyanazt a lokest kapja,
+   csak keslelteve, a sajat helye szerint. */
+.goo .line span {
+  display: inline-block;
+  animation: wave 3.6s ease-in-out infinite;
+  animation-delay: calc(var(--n) * 0.115s);
+  transform-origin: 50% 62%;
+}
+@keyframes wave {
+  0%,  55%, 100% { transform: translate3d(0, 0, 0) scale(1, 1); }
+  18%            { transform: translate3d(0, 0.035em, 0) scale(1.16, 0.88); }
+  34%            { transform: translate3d(0, -0.03em, 0) scale(0.9, 1.14); }
+}
 
 .soonmail {
-  opacity: 0; transform: translate3d(0, 14px, 0);
-  animation: uc-fade 900ms var(--ease) 520ms forwards;
+  margin: clamp(2rem, 5vw, 3.5rem) 0 0;
+  font-size: var(--t-lead);
+  letter-spacing: -0.02em;
+  color: #161614;
+  text-transform: lowercase;
 }
-@keyframes uc-fade { to { opacity: 1; transform: none; } }
+.soonmail a { color: inherit; text-decoration: none; border-bottom: 2px solid #16161433; }
+.soonmail a:hover, .soonmail a:focus-visible { border-color: #161614; }
 
 @media (prefers-reduced-motion: reduce) {
-  .soontitle .mask > i, .soontitle .thin > i, .soonmail {
-    animation: none !important; transform: none !important; opacity: 1 !important;
-  }
+  .goo .line span { animation: none; }
 }
-@media (max-width: 700px) { .soontitle { letter-spacing: -0.035em; } }
-.soonmail { margin: clamp(1.5rem, 3.5vw, 2.5rem) 0 0; font-size: var(--t-lead); letter-spacing: -0.02em; }
-.soonmail a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--rule); }
-.soonmail a:hover, .soonmail a:focus-visible { color: var(--accent); border-color: var(--accent); }
