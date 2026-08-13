@@ -493,6 +493,44 @@ body.sub { background: var(--bg); }
 }
 
 /* ---------- coming soon ---------- */
-.soonmail { margin: 0; font-size: var(--t-small); }
+.soontitle {
+  margin: 0;
+  font-size: clamp(2.6rem, 9.6vw, 11rem);
+  line-height: 0.84;
+  letter-spacing: -0.05em;
+  font-weight: 500;
+  text-transform: uppercase;
+  max-width: 12ch;
+}
+.soontitle .mask { display: block; overflow: clip; padding-bottom: 0.06em; }
+.soontitle .mask > i {
+  display: block; font-style: inherit;
+  transform: translate3d(0, 110%, 0);
+  animation: uc-rise 1000ms var(--ease) forwards;
+  animation-delay: calc(var(--i, 0) * 140ms + 120ms);
+}
+@keyframes uc-rise { to { transform: none; } }
+
+/* a masodik sor sulya lassan lelegzik: valtozo betu, ezert lehet */
+.soontitle .thin > i {
+  font-weight: 200; letter-spacing: -0.04em;
+  animation: uc-rise 1000ms var(--ease) forwards,
+             uc-breathe 7s ease-in-out 1.2s infinite alternate;
+}
+@keyframes uc-breathe { from { font-variation-settings: "wght" 200; } to { font-variation-settings: "wght" 360; } }
+
+.soonmail {
+  opacity: 0; transform: translate3d(0, 14px, 0);
+  animation: uc-fade 900ms var(--ease) 520ms forwards;
+}
+@keyframes uc-fade { to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .soontitle .mask > i, .soontitle .thin > i, .soonmail {
+    animation: none !important; transform: none !important; opacity: 1 !important;
+  }
+}
+@media (max-width: 700px) { .soontitle { letter-spacing: -0.035em; } }
+.soonmail { margin: clamp(1.5rem, 3.5vw, 2.5rem) 0 0; font-size: var(--t-lead); letter-spacing: -0.02em; }
 .soonmail a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--rule); }
 .soonmail a:hover, .soonmail a:focus-visible { color: var(--accent); border-color: var(--accent); }
