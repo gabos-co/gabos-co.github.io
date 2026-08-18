@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>gabos.co — József Gábos, brand and interface design</title>
 <meta name="description" content="József Gábos, graphic and UI designer based in Budapest. Visual identity, packaging, print and digital design. Ratio Műhely, GHT-SYS, Alpok Water, Swiss Re, SevenFriday.">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="light">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://gabos.co/">
 <link rel="alternate" hreflang="en" href="https://gabos.co/">
@@ -25,23 +24,28 @@
 <link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body class="posterpage">
+<body class="uc">
 
-<!-- A grafika vaszonra kerul, a szoveg folotte marad HTML-ben: igy
-     kijelolheto, masolhato, es a kereso is latja. -->
-<div class="poster" data-glyph="G">
-  <canvas class="poster-cv" aria-hidden="true"></canvas>
-
-  <div class="poster-type">
-    <h1 class="poster-title">
-      <span class="line">under</span>
-      <span class="line">construction</span>
-    </h1>
-    <p class="poster-mail">until then: <a href="mailto:hello@gabos.co">hello@gabos.co</a></p>
-  </div>
+<!-- Az olvasztas nem SVG-szurovel megy, mert azt a Safari nem alkalmazza
+     megbizhatoan HTML-re. Helyette: elmosas + eros kontraszt egy feher
+     retegen, amit szorzo keveressel teszunk a szurke lapra. Igy a feher
+     eltunik, a betuk osszefolynak, es a hatter szurke marad. -->
+<div class="goo-layer" aria-hidden="true">
+  <div class="goo-center"><h1 class="goo">
+      <span class="line"><span style="--n:0">u</span><span style="--n:1">n</span><span style="--n:2">d</span><span style="--n:3">e</span><span style="--n:4">r</span></span>
+      <span class="line"><span style="--n:6">c</span><span style="--n:7">o</span><span style="--n:8">n</span><span style="--n:9">s</span><span style="--n:10">t</span><span style="--n:11">r</span><span style="--n:12">u</span><span style="--n:13">c</span><span style="--n:14">t</span><span style="--n:15">i</span><span style="--n:16">o</span><span style="--n:17">n</span></span>
+    </h1></div>
 </div>
 
-<script src="assets/poster.js"></script>
+<div class="uc-front">
+  <div class="goo-center">
+    <div class="ghost"><h1 class="goo">
+      <span class="line"><span style="--n:0">u</span><span style="--n:1">n</span><span style="--n:2">d</span><span style="--n:3">e</span><span style="--n:4">r</span></span>
+      <span class="line"><span style="--n:6">c</span><span style="--n:7">o</span><span style="--n:8">n</span><span style="--n:9">s</span><span style="--n:10">t</span><span style="--n:11">r</span><span style="--n:12">u</span><span style="--n:13">c</span><span style="--n:14">t</span><span style="--n:15">i</span><span style="--n:16">o</span><span style="--n:17">n</span></span>
+    </h1></div>
+    <p class="soonmail">until then: <a href="mailto:hello@gabos.co">hello@gabos.co</a></p>
+  </div>
+</div>
 
 </body>
 </html>
