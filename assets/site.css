@@ -521,6 +521,7 @@ body.uc {
   padding: 90px var(--edge);
 }
 .goo-layer {
+  background: #FFFFFF;
   /* Az elmosas merteke a szoveg mereterol jon, kulonben mobilon szetesnek
      a betuk. Az ertek szabalytalan ritmusban no es apad: ettol ugy hat,
      mintha a felirat hol megolvadna, hol visszaallna. */
@@ -530,39 +531,10 @@ body.uc {
   --b1: 0.028em;
   --b2: 0.060em;
   --b3: 0.098em;
-  --b:  var(--b1);
+  filter: blur(var(--b1)) contrast(18);
+  animation: melt 17s ease-in-out infinite;
   mix-blend-mode: multiply;
   z-index: 0;
-}
-
-/* A filter NEM a teljes kepernyos retegre megy, hanem erre a dobozra, ami
-   csak a feliratot fogja kozre. Ket oka van:
-   1. A Safari a nagy feluletu filtert csokkentett felbontason szamolja, es a
-      kontraszt a lebutitott raszter lepcsoit kemeny elekke nagyitja. Kisebb
-      felulet, nincs lebutitas.
-   2. Kepkockankent ujraszamolni is toredek annyi munka.
-   A feher hatter a szorzo keveres miatt kell, es azert ul rajta a bo belso
-   margo, hogy a doboz sajat elmosott szele joval a betukon kivul maradjon.
-   Szorzo keveresnel a feher nem latszik, tehat a doboz hatarele is lathatatlan.
-   Probaltuk keveres nelkul is, a lap gradienset adva a doboznak: nem jo, mert
-   a contrast() a 0.5 kore forgat, es a vilagos gradienst tiszta feherre viszi,
-   tehat latszana a doboz. */
-.goo-center.goo-melt {
-  background: #FFFFFF;
-  width: auto;
-  max-width: none;
-  padding: 0.4em 0.38em;
-  /* A kontraszt a sziluettet NEM valtoztatja: a kontur a blur
-     50 szazalekos szintvonalanal all, azt a kontraszt erteke nem mozditja.
-     Csak az el meredekseget szabja. 10-ig levittuk, a Safari szemcsesseget
-     az sem szuntette meg, csak lagyabba tette, ezert visszaallt 18-ra. */
-  filter: blur(var(--b)) contrast(18);
-  /* A CSS animacio hajtja. Kiprobaltuk kepkockankenti JS-hajtassal is, hogy a
-     Safari ne adja at a Core Animationnek: elesben akadozott, mert akkor a
-     bongeszonek minden kepkockan ujra kell blurozni a fo szalon. Marad a
-     gyorsitott ut, a felbontas kerdeset a kisebb filter-felulet es a
-     kontraszt oldja. */
-  animation: melt 17s ease-in-out infinite;
 }
 .uc-front { z-index: 1; pointer-events: none; }
 .uc-front a { pointer-events: auto; }
@@ -578,7 +550,7 @@ body.uc {
   color: #141412;
   text-transform: lowercase;
 }
-.goo .line { display: block; white-space: nowrap; }   /* a sor sosem torik: a melt doboz zsugorodo szelessegu */
+.goo .line { display: block; }
 .goo .line span { display: inline-block; }   /* a betuk allnak, csak az olvadas valtozik */
 
 .soonmail {
@@ -596,8 +568,6 @@ body.uc {
 
 @media (prefers-reduced-motion: reduce) { .goo .line span { animation: none; } }
 
-/* A JS nelkuli alapeset kulcskockai. A goo.js ugyanezeket a szamokat hasznalja,
-   csak kepkockankent, a --b valtozon keresztul. */
 @keyframes melt {
   0%   { filter: blur(var(--b1)) contrast(18); }
   9%   { filter: blur(var(--b2)) contrast(18); }
@@ -613,4 +583,4 @@ body.uc {
   92%  { filter: blur(var(--b2)) contrast(18); }
   100% { filter: blur(var(--b1)) contrast(18); }
 }
-@media (prefers-reduced-motion: reduce) { .goo-center.goo-melt { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .goo-layer { animation: none; } }
